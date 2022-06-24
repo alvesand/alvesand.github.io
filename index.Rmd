@@ -1,14 +1,22 @@
 ---
-title: "Personal Website"
+title: "Anderson A. C. Alves"
 output: 
   html_document:
+    css: style.css 
     theme: cerulean
     toc: false
 ---
 
-### Reach me at:
 
-![carvalhoalve.wisc.edu](ol.png){width=10%}![https://github.com/alvesand](logo_github.png){width=10%}![https://www.researchgate.net/profile/Anderson-Alves-2](rg.png){width=10%}  
+![](Picture1.png){width=100%}  
+
+Anderson is an statistical geneticist, currently working as a Research Associate at [Dr. Rosa's lab](https://www.gjmrosa.org/) (University of Wisconsin-Madison). His research focuses on developing and applying quantitative genomics and machine learning methods for solving livestock production problems.   
+
+[**MY CV**](https://drive.google.com/file/d/1KU2M9bNDexYJUpxmdIxSRpTOOw-85lSJ/view?usp=sharing)
+
+**Reach me at:**
+
+[![](in.jpg){width=10%}](https://www.linkedin.com/in/anderson-alves-69aa70212/)[![](logo_github.png){width=10%}](https://github.com/alvesand)[![](rg.png){width=10%}](https://www.researchgate.net/profile/Anderson-Alves-2)  
 
 
 
