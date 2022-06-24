@@ -1,7 +1,7 @@
 name: "Personal-website"
 output_dir: "."
 navbar:
-  title: "Personal Website"
+  title: "A. Alves"
   left:
     - text: "Home"
       href: index.html
@@ -10,4 +10,4 @@ navbar:
 output:
   html_document:
     theme: flatly
-    css: style.css
+    css: two.css

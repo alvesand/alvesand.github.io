@@ -1,8 +1,18 @@
 ---
 title: "Personal Website"
-output: html_document
-date: '2022-06-24'
+output: 
+  html_document:
+    theme: cerulean
+    toc: false
 ---
 
-# My first Rmd sentence
+### Reach me at:
+
+![carvalhoalve.wisc.edu](ol.png){width=10%}![https://github.com/alvesand](logo_github.png){width=10%}![https://www.researchgate.net/profile/Anderson-Alves-2](rg.png){width=10%}  
+
+
+
+
+
+
 
