@@ -1,6 +1,24 @@
 ---
 title: "Media"
-output: html_document
+output: 
+  html_document:
+    css: style.css
+    theme: cerulean
+    toc: false
 ---
+![](video.png){width=20%}  
 
-*Sorry for the messy! we are under construction.*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U6iGEbTS8FA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+# **CGIL seminar Winter 2022 - Dr. Anderson Alves**
+My talk for the CGIL (Centre for Genetic Improvement of Livestock) Winter Seminar at the University of Guelph.
+
+\
+&nbsp;
+
+[![](video_abz.jpg){width=60%}](https://www.youtube.com/watch?v=Me3nqEwIkz8&ab_channel=ABZCear%C3%A1)  
+
+# **SNCT 2020 - IFMA SRM: Palestras de 04/11/2020 (Manhã)**  
+
+An informal conversation hosted by the ABZ-CE (Brazilian Association of Animal Science, Ceara State) about the potential and skills of the animal scientist. (In portuguese) 
+

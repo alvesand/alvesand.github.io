@@ -5,15 +5,15 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Talks"
-      href: talks.html
     - text: "Publications"
       href: publications.html
+    - text: "Talks"
+      href: talks.html
     - text: "Software"
       href: software.html
     - text: "Media"
       href: media.html
-    - text: "About"
+    - text: "About Me"
       href: about.html
 output:
   html_document:

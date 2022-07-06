@@ -1,7 +1,19 @@
 ---
 title: "Software"
-output: html_document
+output: 
+  html_document:
+    css: style.css
+    theme: cerulean
+    toc: false
 ---
 
-*Sorry for the messy! we are under construction.*
+![](software.png){width=20%}  
+
+## R scripts  
+
+* [easymanh](https://github.com/alvesand/easymanh): A simple and flexible function for displaying Manhattan plots using different scores.  
+
+* [train.nn](https://github.com/alvesand/train.nn): A simplified R function for training a Multi-layer Perceptron Neural Network with Gradient Descent optimization and L2-norm regularization for regression analysis.  
+
+* [simdom](https://github.com/alvesand/simdom): An R script for generating simulated datasets with dominance effects using QMSim outputs. 
       

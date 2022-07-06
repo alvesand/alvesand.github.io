@@ -10,7 +10,7 @@ output:
 
 ![](Picture1.png){width=100%}  
 
-Anderson is an statistical geneticist, currently working as a Research Associate at [Dr. Rosa's lab](https://www.gjmrosa.org/) (University of Wisconsin-Madison). His research focuses on developing and applying quantitative genomics and machine learning methods for solving livestock production problems.   
+Anderson is an statistical geneticist, currently working as Research Associate at [Dr. Rosa's lab](https://www.gjmrosa.org/) (University of Wisconsin-Madison). His research focuses on developing and applying statistical models and machine learning methods for the analysis of quantitative traits in livestock animals.   
 
 [**MY CV**](https://drive.google.com/file/d/1KU2M9bNDexYJUpxmdIxSRpTOOw-85lSJ/view?usp=sharing)
 

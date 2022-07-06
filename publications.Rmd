@@ -1,6 +1,70 @@
 ---
 title: "Publications"
-output: html_document
+output: 
+  html_document:
+    css: style.css
+    theme: cerulean
+    toc: false
 ---
 
-*Sorry for the messy! we are under construction.*
+![](paper.png){width=20%}      
+
+
+# Peer-reviewed articles  
+
+## 2022  
+
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) Genetic analysis of feed efficiency and novel feeding behavior traits measured in group-housed broilers using electronic feeders. *Journal of Animal Science* (forthcoming)  
+
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) (Quasi) Multi-task support vector regression with flexible hyperparameter selection via genetic algorithm for whole-genome prediction of complex traits: a case study with carcass traits in broilers. *G3* (forthcoming)  
+
+**Alves AAC**, Costa RM, Fonseca LS, Carvalheiro R, Ventura RV, Rosa GJM, Albuquerque
+LG (2022) A Random Forest-based genome-wide scan reveals fertility candidate genes and
+potential inter-chromosomal epistatic regions associated with age at first calving in Nellore
+cattle. *Frontiers in Genetics*.13:834724. [doi:10.3389/fgene.2022.834724](https://pubmed.ncbi.nlm.nih.gov/35692843/)
+
+Bresolin T, Passafaro TL, Braz CU, **Alves AAC**, Carvalheiro R, Chardulo LAL, Rosa GJM,
+Albuquerque LG (2022). Investigating potential causal relationships among carcass and meat
+quality traits using structural equation model in Nellore cattle. *Meat Science*. 187:108771.[doi:
+10.1016/j.meatsci.2022.108771](https://www.sciencedirect.com/science/article/pii/S0309174022000390)
+
+
+## 2021  
+
+**Alves AAC**, Andrietta LT, Lopes RZ, Bussiman FO, Silva FF, Carvalheiro R, Brito LF,
+Balieiro JCC, Albuquerque LG, Ventura RV (2021) Integrating Audio Signal Processing and
+Deep Learning Algorithms for Gait Pattern Classification in Brazilian Gaited Horses.
+*Frontiers in Animal Science* 2:681557. [doi: 10.3389/fanim.2021.681557](https://www.frontiersin.org/articles/10.3389/fanim.2021.681557/full)
+
+**Alves AAC**, Espigolan R, Bresolin T, Costa RM, Fernandes Júnior GA, Ventura RV,
+Carvalheiro R, and Albuquerque LG (2021) Genome-enabled prediction of breeding values for reproductive traits in Nellore cattle using parametric models and machine learning methods. *Animal Genetics* 52(1):32-46. [doi: 10.1111/age.13021](https://onlinelibrary.wiley.com/doi/full/10.1111/age.13021)
+
+## 2020   
+
+**Alves AAC**, Costa RM, Bresolin T, Fernandes Júnior GA, Espigolan R, Ribeiro AMF, Carvalheiro R, and Albuquerque LG (2020) Genome-wide prediction for complex traits under
+the presence of dominance effects in simulated populations using GBLUP and machine learning methods. *Journal of Animal Science* 98:6. [doi:10.1093/jas/skaa179](https://academic.oup.com/jas/article/98/6/skaa179/5849339?login=true)
+
+Cardoso D, Fernandes-Junior G, Scalez D, **Alves AAC**, Magalhães AFB, Bresolin T, Ventura
+RV, Li C, Oliveira M, Porto-Neto L, Carvalheiro R, Oliveira HN, Tonhati H, and Albuquerque
+LG (2020) Uncovering sub-structure and genomic profiles in across-countries subpopulations
+of Angus cattle. *Scientific Reports* 10:8770. [doi:10.1038/s41598-020- 65565-1](https://www.nature.com/articles/s41598-020-65565-1)
+
+## 2019   
+
+**Alves AAC**, Pinzon AC, Costa RM, Silva MS, Vieira EHM, Mendonça IB, Viana VSS, and
+Lôbo RNB (2019) Multiple regression and machine learning-based methods for carcass traits
+and saleable meat cuts prediction using non-invasive in vivo measurements in commercial
+lambs. *Small Ruminant Research* 171:49-56. [doi: 10.1016/j.smallrumres.2018.12.008](https://www.sciencedirect.com/science/article/pii/S0921448818310265)
+
+## 2017
+
+Lôbo AMBO, Lôbo RNB, Facó O, Souza V, **Alves AAC**, Costa AC, and Albuquerque MAM (2017) Characterization of milk production and composition of four exotic goat breeds in Brazil. *Small Ruminant Research* 153:9-16. [doi: 10.1016/j.smallrumres.2017.05.005](https://www.sciencedirect.com/science/article/pii/S0921448817301402)
+
+## 2016
+
+**Alves AAC**, Lôbo AMBO, Facó O, Silva LP, and Lôbo RNB (2016) Genetic parameters for the rank of the Santa Inês sheep in agricultural fairs using Bayesian procedures. *Italian Journal of Animal Science* 15:604-609. [doi: 10.1080/1828051X.2016.1248866](https://www.tandfonline.com/doi/full/10.1080/1828051X.2016.1248866)
+
+
+
+
+
