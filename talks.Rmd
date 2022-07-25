@@ -8,6 +8,17 @@ output:
 ---
 ![](2_Seminar-.png){width=20%}  
 
+**Statistical pitfalls and their implications for the research reproducibility in animal sciences.**    
+Poultry Science Annual Meeting, San Antonio, Texas.    
+July 13, 2022.        
+[SLIDES](https://docs.google.com/presentation/d/1kzLCy1KYmR53EyQx4hDJTiZQf1tYCcrC/edit?usp=sharing&ouid=103321843011620870813&rtpof=true&sd=true)    
+
+**(Quasi) Multi-task support vector regression for whole-genome prediction of carcass traits in commercial broilers**
+World Congress on Genetics Applied to Livestock production (WCGALP 2022), Rotterdam, The Netherlands. 
+July 8, 2022.  
+[SLIDES](https://docs.google.com/presentation/d/1Y2hmhrwtUwYJT6o9sTQytTZRgm7p-r2t/edit?usp=sharing&ouid=103321843011620870813&rtpof=true&sd=true)
+
+
 **Prediction of Culling and Mortality Risks in Group-housed Broilers Using Machine Learning Methods Trained with Time-series Data of Feeding Behavior Traits.**    
 ASAS-CSAS Annual Meeting,Oklahoma City, Oklahoma.    
 June 28, 2022.    
