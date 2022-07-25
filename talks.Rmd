@@ -13,9 +13,9 @@ Poultry Science Annual Meeting, San Antonio, Texas.
 July 13, 2022.        
 [SLIDES](https://docs.google.com/presentation/d/1kzLCy1KYmR53EyQx4hDJTiZQf1tYCcrC/edit?usp=sharing&ouid=103321843011620870813&rtpof=true&sd=true)    
 
-**(Quasi) Multi-task support vector regression for whole-genome prediction of carcass traits in commercial broilers**
-World Congress on Genetics Applied to Livestock production (WCGALP 2022), Rotterdam, The Netherlands. 
-July 8, 2022.  
+**(Quasi) Multi-task support vector regression for whole-genome prediction of carcass traits in commercial broilers**  
+World Congress on Genetics Applied to Livestock production (WCGALP 2022), Rotterdam, The Netherlands.   
+July 8, 2022.    
 [SLIDES](https://docs.google.com/presentation/d/1Y2hmhrwtUwYJT6o9sTQytTZRgm7p-r2t/edit?usp=sharing&ouid=103321843011620870813&rtpof=true&sd=true)
 
 
