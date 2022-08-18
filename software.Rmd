@@ -12,14 +12,15 @@ output:
 ## R package
 
 * [qmtsvr](): (Quasi) Multi-task Support Vector Regression methods for genome-wide prediction of complex traits. 
-[`Documentation`](my_vignette.html) [`Source Code`](https://github.com/alvesand/qmtsvr)
-
+[`Documentation`](qmtsvr_doc.html) [`Source Code`](https://github.com/alvesand/qmtsvr)  
 
 ## R scripts  
 
-* [easymanh](https://github.com/alvesand/easymanh): A simple and flexible function for displaying Manhattan plots using different scores.  
+* [SISGlabs](): A suite of R scripts to illustrate some concepts in Quantitative Genetics and Mixed Model Theory. [`Source Code`](https://github.com/alvesand/SISG_Labs_Modules_9_and_12)  
 
-* [train.nn](https://github.com/alvesand/train.nn): A simplified R function for training a Multi-layer Perceptron Neural Network with Gradient Descent optimization and L2-norm regularization for regression analysis.  
+* [easymanh](): A simple and flexible function for displaying Manhattan plots using different scores. [`Source Code`](https://github.com/alvesand/easymanh)     
 
-* [simdom](https://github.com/alvesand/simdom): An R script for generating simulated datasets with dominance effects using QMSim outputs. 
+* [train.nn]()): A simplified R function for training a Multi-layer Perceptron Neural Network with Gradient Descent optimization and L2-norm regularization for regression analysis.[`Source Code`](https://github.com/alvesand/train.nn)     
+
+* [simdom](): An R script for generating simulated datasets with dominance effects using QMSim outputs. [`Source Code`](https://github.com/alvesand/simdom)      
       
