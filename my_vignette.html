@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>qmtsvr: (Quasi) Multi-task Support Vector Regression methods</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="C:/Users/Badger/Documents/R/win-library/4.1/rmarkdown/rmarkdown/templates/html_vignette/resources/vignette.css" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">qmtsvr: (Quasi) Multi-task Support Vector Regression methods</h1>
+
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><strong>qmtsvr</strong> is a R package for fitting (<em>Quasi</em>) Multi-task Support Vector Regression methods with a focus on the prediction of complex traits using genomic data. The package expands the commonly used <em>ɛ -insensitive</em> loss function for augmenting the number of observations for a target variable (the trait of interest) by aggregating the complementary information of <span class="math inline">\(t – 1\)</span> correlated traits. The high computational burden for the hyperparameter fine-tuning is alleviated by considering trait-common values for the model bias, regularization parameter, and epsilon constant, leading to an optimization problem that can be handled in standard quadratic programming libraries. The <em>H</em>-dimensional hyperparameter space (with <span class="math inline">\(H = 2 + t^2\)</span>, where <em>t</em> is the number of traits) is then optimized via a stochastic evolutionary algorithm.</p>
+</div>
+<div id="method-description" class="section level1">
+<h1>Method Description</h1>
+<div id="qmtsvr-formulation" class="section level2">
+<h2>QMTSVR formulation</h2>
+<p>The following data augmentation scheme is employed:<br />
+<span class="math display">\[\begin{equation}
+    \arg min_{a,a*}  
+    \frac{1}{2}
+    \begin{bmatrix}
+    \boldsymbol{\alpha^{(1)}} - \boldsymbol{\alpha^{*(1)}}\\
+    \boldsymbol{\alpha^{(2)}} - \boldsymbol{\alpha^{*(2)}}\\
+    \vdots\\
+    \boldsymbol{\alpha^{(t)}} - \boldsymbol{\alpha^{*(t)}}\\
+    \end{bmatrix}^{T}
+    \boldsymbol{Q}
+    \begin{bmatrix}
+    \boldsymbol{\alpha^{(1)}} - \boldsymbol{\alpha^{*(1)}}\\
+    \boldsymbol{\alpha^{(2)}} - \boldsymbol{\alpha^{*(2)}}\\
+    \vdots\\
+    \boldsymbol{\alpha^{(t)}} - \boldsymbol{\alpha^{*(t)}}\\
+    \end{bmatrix}
+    + 
+    \epsilon
+    \begin{bmatrix}
+    \boldsymbol{\alpha^{(1)}} - \boldsymbol{\alpha^{*(1)}}\\
+    \boldsymbol{\alpha^{(2)}} - \boldsymbol{\alpha^{*(2)}}\\
+    \vdots\\
+    \boldsymbol{\alpha^{(t)}} - \boldsymbol{\alpha^{*(t)}}\\
+    \end{bmatrix}^{T}
+    \boldsymbol{1_{n}} \bigotimes \boldsymbol{1_{t}} - 
+    \begin{bmatrix}
+    \boldsymbol{\alpha^{(1)}} - \boldsymbol{\alpha^{*(1)}}\\
+    \boldsymbol{\alpha^{(2)}} - \boldsymbol{\alpha^{*(2)}}\\
+    \vdots\\
+    \boldsymbol{\alpha^{(t)}} - \boldsymbol{\alpha^{*(t)}}\\
+    \end{bmatrix}^{T}
+    \begin{bmatrix}
+    \boldsymbol{y^{*(1)}}\\
+    \boldsymbol{y^{*(2)}}\\
+    \vdots\\
+    \boldsymbol{y^{*(t)}}\\
+    \end{bmatrix}
+        (1)
+\end{equation}\]</span> <span class="math display">\[ s.t 
+\begin{cases}
+    0 \leq \alpha^{(k)}_{i},\alpha^{*(k)}_{i} \leq C, i = 1,2, ..., N \\
+    \begin{bmatrix}
+    \boldsymbol{\alpha^{(k)}} - \boldsymbol{\alpha^{*(k)}}\\
+    \end{bmatrix}^{T}\boldsymbol{1_{n}} = 0, k = 1,2, ..., t
+  \end{cases}
+\]</span></p>
+<p>where <em>t</em> refers to the number of traits, <span class="math inline">\(\boldsymbol{\alpha^{(k)}}\)</span> and <span class="math inline">\(\boldsymbol{\alpha^{*(k)}}\)</span> are the vectors of positive Lagrange multipliers related to the trait <em>k</em>, <span class="math inline">\(\boldsymbol{1_{t}}\)</span> is a <em>t</em>-dimensional vector of ones, ⊗ is the Kronecker product, <span class="math inline">\(\boldsymbol{y^{*(1)}}, \boldsymbol{y^{*(2)}}, ..., \boldsymbol{y^{*(t)}}\)</span> are vectors of observed values for <em>t</em> target variables standardized to the same scale, and <strong>Q</strong> is a block symmetric matrix, partitioned into <span class="math inline">\(t^{2}\)</span> blocks of dimension <em>N x N</em>. The <em>Q</em> matrix in (1) is a multi-task scaled RBF kernel, proposed as follows:</p>
+<p><span class="math display">\[\begin{equation}
+    \boldsymbol{Q} =  
+    \begin{bmatrix}
+    exp(-\theta_{11}\boldsymbol{D^{2}}p^{-1}) &amp; \cdots &amp; \rho_{1t}exp(-\theta_{1t}\boldsymbol{D^{2}}p^{-1}) \\
+    \vdots  &amp; \ddots &amp; \vdots  \\
+    \rho_{t1}exp(-\theta_{t1}\boldsymbol{D^{2}}p^{-1}) &amp; \cdots &amp;      exp(-\theta_{tt}\boldsymbol{D^{2}}p^{-1}) \\
+    \end{bmatrix}
+    (2) 
+\end{equation}\]</span> where <strong>D</strong> is an <span class="math inline">\(N \times N\)</span> Euclidean distance matrix (EDM) for the markers’ vectors, considering all genotyped individuals for at least one of the analyzed traits, <em>p</em> is some scalar representing the number of predictor variables (<em>e.g.</em>, number of SNPs), <span class="math inline">\(\theta_{kk}\)</span> and <span class="math inline">\(\theta_{kk^{&#39;}}\)</span> are trait-specific and trait-common bandwidth hyperparameters, and <span class="math inline">\(\rho_{kk^{&#39;}}\)</span> is some constant between -1 and 1 indicating the magnitude and direction of the association between traits <span class="math inline">\(k\)</span> and <span class="math inline">\(k^{&#39;}\)</span>. The <strong>qmtsvr.dist</strong> function can be used for fast computing unweighted and weighted EDMs.<br />
+Using the dual formulation in <strong>eq. (1)</strong>, the function for predicting yet-to-be-seen observations depends solely on the mapping kernel and can be written as <span class="math inline">\(f(\boldsymbol{x_{i}},\boldsymbol{x_{i}}) = \sum^{(N \times t)}_{j=1}(\alpha^{(k)}_{j}-\alpha^{*(k)}_{j}){Q_{ij}} + b_{0}\)</span>, for <em>k</em> = 1, 2, … <em>t</em> (<strong>3</strong>), in which <span class="math inline">\(Q_{ij}\)</span> maps the relationship in the feature space between the individual <em>i</em> and every column <em>j</em> in the matrix <span class="math inline">\(\boldsymbol{Q}\)</span>.<br />
+The predicted value <span class="math inline">\(f(\boldsymbol{x_{i}}\)</span> is then returned to the original scale by using the proper math. Equations 1, 2 and 3 are automatically used with the function <strong>qmtsvr.fit</strong>. Notice that the bias <span class="math inline">\(b_{0}\)</span> value, the regularization hyperparameter (<span class="math inline">\(C\)</span>), and the epsilon threshold (<span class="math inline">\(\epsilon\)</span>) are assumed to be constant for all traits in equations 1 and 3, consequently, one can fit this extended SVR model with the standard SMO algorithm, available in most kernel-based methods libraries, just by precomputing the block matrix <span class="math inline">\(\boldsymbol{Q}\)</span>. Our implementation uses the <em>kernlab</em> package (Karatzoglou et al., 2004) as the backend for solving the quadratic programming problem. The model has <span class="math inline">\(2 + t^{2}\)</span> hyperparameters to be tuned, the global <span class="math inline">\(C\)</span> and <span class="math inline">\(\epsilon\)</span> constants, besides the kernel bandwidth hyperparameters (<span class="math inline">\(\theta_{kk^{&#39;}}\)</span>) and the association constants (<span class="math inline">\(\rho_{kk^{&#39;}}\)</span>) in <span class="math inline">\(\boldsymbol{Q}\)</span>.</p>
+</div>
+<div id="qmtsvr-fine-tuning-with-genetic-algorithm" class="section level2">
+<h2>QMTSVR fine tuning with Genetic algorithm</h2>
+<p>The function <strong>qmtsvr.GA</strong> uses a genetic algorithm (GA) for finding an optimal hyperparameter combination that maximizes the QMTSVR prediction ability. This stochastic evolutionary algorithm compares a population of candidate models (with binary arrays representing different hyperparameter combinations or the chromosome in the GA terminology) according to their fitness scores (<em>fs</em>). The arrays for the models with the best <em>fs</em> are then selected and crossed for composing the next generation. The resulting child arrays inherit features from both parent chromosomes from the previous generation. The relevant parameters in the present GA implementation are the population size (PS), the number of generations (NG), crossover rate (CR), mutation rate (MR), and Tournament Size (<em>tsize</em>). The PS indicates the number of models tested per generation; the CR controls the rate that a child’s chromosome will result from the crossing-over of two parents instead of being an identical copy of one of them. The MR is the probability of a single bit (or gene) on the binary array changing randomly, implying slight modifications to the current model. The selection operator in the GA was the Tournament Selection, <em>i.e.</em>, for each child chromosome to be created, <em>tsize</em> individuals are drawn at random from the current population and the one with the highest fs is selected for integrating the pair of crossing chromosomes.<br />
+The GA-based fine-tuning of the QMTSVR hyperparameters is illustrated in Figure 1. <img src="GA.jpg" style="width:95.0%" /><br />
+<strong>Figure 1. The optimization process of the QMTSVR method via genetic algorithm (GA).</strong> <em>During the GA-based fine-tuning each specific hyperparameter set is coded as a binary array (the chromosome). The fitness function is computed for each chromosome based on the predictive ability that this specific hyperparameter set achieves in the validation population (omitted during the GA-based optimization). The tournament selection operator selects a pair of individuals with the best fitness scores of two subsets randomly drawn with replacements from the current population. A child chromosome is created for each chromosome pair sampled with the selection operator and P new chromosomes are created for the next generation using the two-point crossing-over and mutation processes. The v worst individuals (set of hyperparameters) of the current generation are replaced with the v best individuals from the previous generation. The GA algorithm repeats the process for T generations. The best hyperparameter set (<span class="math inline">\(Ψ_{GA}\)</span>) is then used for retraining the model with all available observations.</em></p>
+</div>
+</div>
+<div id="function-arguments" class="section level1">
+<h1>Function arguments</h1>
+<p>The package main functions are:</p>
+<div id="qmtsvr.dist" class="section level2">
+<h2>qmtsvr.dist</h2>
+<p>Returns an <span class="math inline">\(N \times N\)</span> (weighted) Euclidean Distance Matrix (EDM) based on a numeric matrix <span class="math inline">\(X_{N \times p}\)</span>.</p>
+<p>the <strong>qmtsvr.dist</strong> function has the following arguments:</p>
+<ul>
+<li><strong><code>x</code></strong> | A <span class="math inline">\(n \times p\)</span> matrix of genotypes or other features (rows for individuals, columns for predictor variables)<br />
+</li>
+<li><strong><code>w</code></strong> | A vector of size <span class="math inline">\(p\)</span> containing the weighting factors to be assigned to the features in <span class="math inline">\(\boldsymbol{X_{N \times p}}\)</span> during the EDM computation (<em>Optional</em>).</li>
+<li><strong><code>u</code></strong> | the power of the final EDM values (<em>default</em> = 2).</li>
+<li><strong><code>verbose</code></strong> A logical argument indicating if the time elapsed for computing the EDM must be printed (<em>default</em> = FALSE).</li>
+<li><strong><code>vardiag</code></strong> | A logical argument specifying if EDM diagonal elements must have variation around zero (<em>default</em>=FALSE). If <code>vardiag</code>= TRUE, the zero values in EDM diagonals will be replaced with <span class="math inline">\(1-(\frac{d}{\sqrt d * \sqrt m})\)</span> in which <span class="math inline">\(\boldsymbol{d}\)</span> is the diagonal of <span class="math inline">\(\boldsymbol{XX^{T}}\)</span> and <em>m</em> is the median of <span class="math inline">\(\boldsymbol{d}\)</span>.</li>
+</ul>
+</div>
+<div id="qmtsvr.fit" class="section level2">
+<h2>qmtsvr.fit</h2>
+<p>Fits a QMTSVR model with with user pre-defined hyper parameters. Returns an numeric <span class="math inline">\(N \times t\)</span> prediction matrix.</p>
+<p>the <strong>qmtsvr.fit</strong> function has the following arguments:</p>
+<ul>
+<li><strong><code>Y</code></strong> | An <span class="math inline">\(n \times t\)</span> numeric matrix of correlated response variables, where <span class="math inline">\(N\)</span> is the number of observations and <span class="math inline">\(t\)</span> is the number of traits (missing values are coded as NA).</li>
+<li><strong><code>X</code></strong> | A <span class="math inline">\(N \times p\)</span> matrix of features (<em>e.g.</em>, SNP markers), in which <span class="math inline">\(p\)</span> is the number of features.</li>
+<li><strong><code>set_hyper</code></strong> | a list specifying the QMTSVR model hyperparameters.</li>
+<li><strong><code>w</code></strong> | A list containing the trait-specific and trait-common weighting factors to be assigned to the features in <span class="math inline">\(\boldsymbol{X_{N \times p}}\)</span> during the EDM computation (<em>Optional</em>).<br />
+</li>
+<li><strong><code>D</code></strong> | a list with all pre-computed EDM. It can be passed as an argument alternatively to the matrix <span class="math inline">\(\boldsymbol{X_{N \times p}}\)</span> (<em>Optional</em>).</li>
+<li><strong><code>verbose</code></strong> | A logical argument indicating if the function log must be printed at the console.</li>
+<li><strong><code>vardiag</code></strong> | A logical argument specifying if diagonal elements of the EMD should have variation around zero. (<em>default</em>=FALSE). If <code>vardiag</code> = TRUE, the zero values in the EMD diagonal will be replaced with: <span class="math inline">\(1-(\frac{d}{\sqrt d * \sqrt m})\)</span>, in which <span class="math inline">\(\boldsymbol{d}\)</span> is the diagonal of <span class="math inline">\(\boldsymbol{XX^{T}}\)</span> and <em>m</em> is the median of <span class="math inline">\(\boldsymbol{d}\)</span>. This quantity yields a variation around 1 for the diagonal elements of the RBF kernel, computed as <span class="math inline">\(K = e^{-b*D^{2}}\)</span>, where <span class="math inline">\(b\)</span> is a hyperparameter constant and <span class="math inline">\(\boldsymbol{D}\)</span> is the Euclidean Distance Matrix. When the SNP matrix is used as input, the diagonal elements in <span class="math inline">\(\boldsymbol{K}\)</span> correlate with those from the <span class="math inline">\(\boldsymbol{G}\)</span> matrix presented in VanRaden (2008).</li>
+</ul>
+</div>
+<div id="qmtsvr.ga" class="section level2">
+<h2>qmtsvr.GA</h2>
+<p>Optimizes the QMTSVR hyperparameters using a Genetic Algorithm.</p>
+<p>the <strong>qmtsvr.GA</strong> function has the following arguments:</p>
+<ul>
+<li><strong><code>Y</code></strong> | A <span class="math inline">\(N \times t\)</span> matrix of response variables, where N is the number of observations and t is the number of traits (missing values are coded as NA).</li>
+<li><strong><code>X</code></strong> | <span class="math inline">\(N \times p\)</span> matrix of features (<em>e.g.</em>, SNP markers ), in which <span class="math inline">\(p\)</span> is the number of columns.</li>
+<li><strong><code>hyper</code></strong> | A <em>list</em> object containing the name specification and range for each hyperparameter to be optimized in the QMTSVR model.</li>
+<li><strong><code>ngen</code></strong> | The number of generations to run in the Genetic Algorithm.</li>
+<li><strong><code>popsize</code></strong> The population size (PS) to grow, it indicates the number of models tested per generation.</li>
+<li><strong><code>mut_rate</code></strong> | The mutation rate (<em>e.g.</em>, 0.05) of the genetic algorithm. It is the probability of a single bit (or gene) on the binary array changing randomly, implying slight modifications to the current model.</li>
+<li><strong><code>cross_rate</code></strong> | The crossing over (CR) rate for the genetic algorithm. The CR controls the rate that a child’s chromosome will result from the crossing-over of two parents instead of being an identical copy of one of them.</li>
+<li><strong><code>tsize</code></strong> | The tournament size to be used in the GA(<em>default</em> = 5). For each child chromosome to be created, <code>tsize</code> individuals are drawn at random from the current population and the one with the highest fitness scores is selected for integrating the pair of crossing chromosomes.</li>
+<li><strong><code>elitism</code></strong> | The number of models with the best performance in the current generation to keep for the next generarion (<em>default</em> = 1).</li>
+<li><strong><code>cost</code></strong> | The cost function to be optimized in the GA. The values accepted are: cor, rmse and mae for Pearson correlation between observed and predicted values, <em>Root-mean squared error</em> and <em>Mean absolute error</em>, respectively. The current version only accepts cost functions for continuous target variables.</li>
+<li><strong><code>w</code></strong> | A vector of size <span class="math inline">\(p\)</span> with the weighting factors to be assigned to the features in <span class="math inline">\(\boldsymbol{X}\)</span> for the EDM computation (<em>Optional</em>).</li>
+<li><strong><code>tgTrait</code></strong> | A constant for indexing the column where the target variable is located at Y (<em>default</em> = 1).</li>
+<li><strong><code>val_pop</code></strong> | A character object indicating the validation strategy adopted in the GA. cross indicates cross-validation, custom indicates that the cost for an specific group must be optimized and closest indicates that the target population to be optimized will be composed by the closest individuals (based on the Euclidean distance of <span class="math inline">\(\boldsymbol{X}\)</span>) to those with NA values in the target variable.</li>
+<li><strong><code>nfolds</code></strong> | If val_pop = cross, <code>nfolds</code> is the number of folds to be used in the cross-validation.</li>
+<li><strong><code>k</code></strong> | If <code>val_pop</code> = closest, <code>k</code> is the number closest neighbors to be identified in the EDM for each NA value.</li>
+<li><strong><code>custom_val</code></strong> | If <code>val_pop</code> = custom, <code>custom_val</code> is a vector of size <em>N</em> assuming 0 (train) and 1 (validation) values for indicating which individual will compose the validation population in the GA.</li>
+<li><strong><code>vartype</code></strong> | The target variable class. The current version only accepts continuous.</li>
+<li><strong><code>MRCR</code></strong> | it can be fixed (<em>default</em>) or dynamic; if the second option is chosen, the GA will gradatively reduce CR and increase MR when the algorithm get stuck in local minima.</li>
+<li><strong><code>verbose</code></strong> | A logical argument indicating if the GA output must be printed at the console.</li>
+<li><strong><code>dopar</code></strong> A logical argument indicating if the GA will be performed using a parallel process. It will speed up the GA run time. <strong>Attention</strong>: <em>in the current version it will only work in Linux machines</em>.</li>
+<li><strong><code>ncores</code></strong> | If <code>dopar</code> = TRUE, the number of cores to be used must be specified (<em>default</em> = <em>number of cores available</em> - 1).</li>
+</ul>
+</div>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>In this section, we provide some examples on how to use each function of the qmtsvr package.</p>
+<div id="qmtsvr.dist-1" class="section level2">
+<h2>qmtsvr.dist</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qmtsvr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>values <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(values, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>D <span class="ot">=</span> <span class="fu">qmtsvr.dist</span> (<span class="at">x=</span>X)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>D</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          [,1]     [,2]     [,3]     [,4]     [,5]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 0.000000 4.408274 5.803016 4.266822 3.946747</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] 4.408274 0.000000 3.700128 2.300411 2.019701</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 5.803016 3.700128 0.000000 3.491858 3.432694</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 4.266822 2.300411 3.491858 0.000000 1.897384</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5,] 3.946747 2.019701 3.432694 1.897384 0.000000</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing the distance with the R base function</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>D2 <span class="ot">=</span> <span class="fu">dist</span>(X,<span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>,<span class="at">diag =</span> T)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>D2</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          1        2        3        4        5</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 0.000000                                    </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 4.408274 0.000000                           </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 5.803016 3.700128 0.000000                  </span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 4.266822 2.300411 3.491858 0.000000         </span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 3.946747 2.019701 3.432694 1.897384 0.000000</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Give more weight for the columns 1 and 5</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>w <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">50</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">1</span>] <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">5</span>] <span class="ot">=</span> <span class="fl">15.5</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>D2 <span class="ot">=</span> <span class="fu">qmtsvr.dist</span> (<span class="at">x=</span>X, <span class="at">w =</span> w)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>D2</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           [,1]     [,2]      [,3]      [,4]     [,5]</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]  0.000000 8.664552 15.367713 10.537977 9.963409</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]  8.664552 0.000000  7.896988  3.422941 4.032030</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] 15.367713 7.896988  0.000000  5.771977 6.575388</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4,] 10.537977 3.422941  5.771977  0.000000 2.832653</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5,]  9.963409 4.032030  6.575388  2.832653 0.000000</span></span></code></pre></div>
+</div>
+<div id="qmtsvr.fit-1" class="section level2">
+<h2>qmtsvr.fit</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qmtsvr)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Load dataset</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pheno <span class="ot">=</span> data_ex<span class="sc">$</span>mydata[<span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pheno)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         EBV_A       EBV_B     EBV_C</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1   4.8772368 -19.8837656 -15.63683</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2   0.4379619  -0.8912274 -60.40955</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 -33.5370259  -6.0417011 -56.89957</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 -13.8551773  55.6229989  17.61085</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 -11.7870029  -7.9005613  22.94181</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 -34.1528759  13.1498998 -60.99747</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> data_ex<span class="sc">$</span>SNP[<span class="dv">1</span><span class="sc">:</span><span class="dv">300</span>,] </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>obs <span class="ot">=</span> pheno <span class="co">#copy the observations matrix</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>pheno[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>] <span class="ot">=</span> <span class="cn">NA</span> <span class="co">#omit the last 100 observations</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting arbitrary hyperparameters values for a single trait SVR model</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>hyper_st <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&quot;C&quot;</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">&quot;eps&quot;</span> <span class="ot">=</span> <span class="fl">0.009</span>, <span class="st">&quot;b1&quot;</span> <span class="ot">=</span> <span class="fl">2.5</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#Predict the values</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>YHAT <span class="ot">=</span> <span class="fu">qmtsvr.fit</span>(<span class="at">Y=</span><span class="fu">as.matrix</span>(pheno[,<span class="dv">1</span>]), <span class="at">X =</span> X, <span class="at">set_hyper =</span> hyper_st, <span class="at">verbose =</span> F, <span class="at">vardiag =</span> T)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting arbitrary hyperparameters values for a multi-trait SVR model with 3 traits</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>hyper_mt <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&quot;C&quot;</span> <span class="ot">=</span> <span class="fl">0.2</span>, <span class="st">&quot;eps&quot;</span> <span class="ot">=</span> <span class="fl">0.09</span>, <span class="st">&quot;b1&quot;</span> <span class="ot">=</span> <span class="fl">0.15</span>, </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;b2&quot;</span><span class="ot">=</span> <span class="fl">6.67</span>, <span class="st">&quot;b3&quot;</span> <span class="ot">=</span> <span class="fl">2.21</span>,<span class="st">&quot;b4&quot;</span> <span class="ot">=</span> <span class="fl">4.26</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;b5&quot;</span> <span class="ot">=</span> .<span class="dv">53</span>, <span class="st">&quot;b6&quot;</span> <span class="ot">=</span> <span class="fl">1.4</span>, <span class="st">&quot;r1&quot;</span> <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;r2&quot;</span> <span class="ot">=</span> <span class="fl">0.5</span>, <span class="st">&quot;r3&quot;</span> <span class="ot">=</span> <span class="fl">0.14</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#The sequence of bandwidth parameters (b) according to the traits (t1, t2, t3) is:</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     t1 t2 t3</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># t1: b1 b2 b3</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co"># t2:  . b4 b5</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co"># t3:  .  . b6</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#The sequence of weights r according to the traits (t1, t2, t3) is:</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#     t1 t2 t3</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="co"># t1:  . r1 r2</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># t2:  .  . r3</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># t3:  .  .  .</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co">#Predict the values</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>YHAT2 <span class="ot">=</span> <span class="fu">qmtsvr.fit</span>(<span class="at">Y=</span>pheno, <span class="at">X =</span> X, <span class="at">set_hyper =</span> hyper_mt, <span class="at">verbose =</span> T, <span class="at">vardiag =</span> T)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #------- The University of Wisconsin - Madison --------#</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #------ Department of Animal and Dairy Sciences -------#</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #                     /)  (                            #</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #                .-._((.~~.))_.-.                      #</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #                `-.   @@   .-.-                       #</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #                  / .o--o.                            #</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #                 ( ( .__. ) )                         #</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #------------------------------------------------------#</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #       QMTSVR v.0.1.4 (beta) - June 2022              #</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #   (Quasi)Multitask support vector regression         #</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #  Anderson A.C. Alves (alves.zootecnista@gmail.com)   #</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  #------------------------------------------------------#</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       </span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #--| Euclidean Distance Matrices (EDM) not provided |--# </span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Computing EDMs... </span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Done... </span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Building the kernel blocks... </span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Done...</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Correlate the predictions with the observed values</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(YHAT[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>],obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>]) <span class="co">#Single Task</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1557956</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(YHAT2[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>],obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>]) <span class="co">#Multiple Task</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4573185</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co">#compute Root-mean squared error</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sqrt</span>((YHAT[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>] <span class="sc">-</span> obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span>))<span class="co">#Single Task</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 23.76864</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sqrt</span>((YHAT2[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>] <span class="sc">-</span> obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>])<span class="sc">^</span><span class="dv">2</span>))<span class="co">#Multiple Task</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 21.26071</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co">#plot the results</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(YHAT[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>],obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>], <span class="at">pch =</span> <span class="dv">19</span>, </span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">&quot;Predicted values&quot;</span>, </span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Observed values&quot;</span>, </span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.7</span>,<span class="fl">0.5</span>,<span class="fl">0.20</span>,<span class="fl">0.7</span>), <span class="at">main =</span> <span class="st">&quot;Single Task&quot;</span>)</span></code></pre></div>
+<p><img src="my_vignette_files/figure-html/unnamed-chunk-2-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(YHAT2[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>],obs[<span class="dv">200</span><span class="sc">:</span><span class="dv">300</span>,<span class="dv">1</span>], </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">xlab =</span> <span class="st">&quot;Predicted values&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Observed values&quot;</span>, <span class="at">col =</span> <span class="fu">rgb</span>(<span class="fl">0.7</span>,<span class="fl">0.5</span>,<span class="fl">0.20</span>,<span class="fl">0.7</span>), <span class="at">main =</span> <span class="st">&quot;Multiple Task&quot;</span>)</span></code></pre></div>
+<p><img src="my_vignette_files/figure-html/unnamed-chunk-2-2.png" /><!-- --></p>
+</div>
+<div id="qmtsvr.ga-1" class="section level2">
+<h2>qmtsvr.GA</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qmtsvr)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Load dataset</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>pheno <span class="ot">=</span> data_ex<span class="sc">$</span>mydata</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> data_ex<span class="sc">$</span>SNP</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pheno)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   animal      TBV_A      TBV_B     TBV_C       EBV_A       EBV_B     EBV_C</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Anim_1   1.578131 -27.092955 -30.25875   4.8772368 -19.8837656 -15.63683</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Anim_2 -22.669915  -9.775277 -56.16842   0.4379619  -0.8912274 -60.40955</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Anim_3 -33.858646   5.144064 -49.76587 -33.5370259  -6.0417011 -56.89957</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Anim_4 -35.199621  32.460694  25.20912 -13.8551773  55.6229989  17.61085</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Anim_5 -19.520892  12.923652  21.49241 -11.7870029  -7.9005613  22.94181</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Anim_6 -46.887736  -8.594900 -84.18479 -34.1528759  13.1498998 -60.99747</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>hyper_st <span class="ot">=</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;C&quot;</span>,<span class="fl">0.01</span>,<span class="dv">5</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;eps&quot;</span>,<span class="fl">0.001</span>,<span class="fl">0.2</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#The regularization parameter (&quot;C&quot;) will range from 0.01 to 5, with 128 values tested within this interval</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#The epsilon constant (&quot;eps&quot;) will range from 0.001 to 0.2, with 128 values tested within this interval</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#The bandwidth parameter (&quot;b1&quot;) will range from 0.1 to 7, with 128 values tested within this interval</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#The last 50 individuals will be used as the GA internal validation population</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>custom_val <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">150</span>),<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">50</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Run the GA for a single-task SVR (as illustration only the first 200 values are used)</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>st_svr <span class="ot">=</span> <span class="fu">qmtsvr.GA</span>(<span class="at">Y =</span> <span class="fu">as.matrix</span>(pheno[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="dv">5</span>]), </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">X =</span> X[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,], <span class="at">hyper =</span> hyper_st,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ngen =</span> <span class="dv">30</span>, <span class="at">popsize =</span> <span class="dv">50</span>, <span class="at">mut_rate =</span> <span class="fl">0.02</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cross_rate =</span> <span class="fl">0.95</span>, <span class="at">elitism =</span> <span class="dv">2</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> <span class="st">&quot;cor&quot;</span>, <span class="at">tsize =</span> <span class="dv">5</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                   <span class="at">val_pop =</span> <span class="st">&quot;custom&quot;</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                   <span class="at">custom_val=</span>custom_val,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">vardiag=</span>T, <span class="at">verbose =</span> F)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the list with optimized hyperparameters</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>st_svr<span class="sc">$</span>set_hyper</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          C        eps         b1 </span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.01000000 0.09501575 7.00000000</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot GA history </span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.GA</span>(st_svr)</span></code></pre></div>
+<p><img src="my_vignette_files/figure-html/unnamed-chunk-3-1.png" /><!-- --></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#QMT-SVR with 3 response variables</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Define the range for hyperparameters in a multi-task SVR with 3 variables</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>hyper_mt <span class="ot">=</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;C&quot;</span>,<span class="fl">0.1</span>,<span class="dv">5</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;eps&quot;</span>,<span class="fl">0.001</span>,<span class="fl">0.3</span>,<span class="dv">128</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="fu">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;b2&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;b3&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">c</span>(<span class="st">&quot;b4&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;b5&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>), <span class="fu">c</span>(<span class="st">&quot;b6&quot;</span>,<span class="fl">0.1</span>,<span class="dv">7</span>,<span class="dv">128</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                <span class="fu">c</span>(<span class="st">&quot;r1&quot;</span>,<span class="sc">-</span><span class="fl">0.9</span>,<span class="fl">0.9</span>,<span class="dv">128</span>),<span class="fu">c</span>(<span class="st">&quot;r2&quot;</span>,<span class="sc">-</span><span class="fl">0.9</span>,<span class="fl">0.9</span>,<span class="dv">128</span>),<span class="fu">c</span>(<span class="st">&quot;r3&quot;</span>,<span class="sc">-</span><span class="fl">0.9</span>,<span class="fl">0.9</span>,<span class="dv">128</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Run the GA for optimizing the model hyperparameters</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>mt_svr <span class="ot">=</span> <span class="fu">qmtsvr.GA</span>(<span class="at">Y =</span> pheno[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,<span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">X =</span> X[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>,],</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">hyper =</span> hyper_mt, <span class="at">ngen =</span> <span class="dv">30</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">popsize =</span> <span class="dv">50</span>,<span class="at">mut_rate =</span> <span class="fl">0.02</span>, </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cross_rate =</span> <span class="fl">0.95</span>, <span class="at">elitism =</span> <span class="dv">2</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">cost =</span> <span class="st">&quot;cor&quot;</span>, <span class="at">tsize =</span> <span class="dv">5</span>, <span class="at">val_pop =</span> <span class="st">&quot;custom&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">custom_val =</span> custom_val, <span class="at">vardiag=</span>T, <span class="at">verbose =</span> F)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Get the list with optimized hyperparameters</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>mt_svr<span class="sc">$</span>set_hyper</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           C         eps          b1          b2          b3          b4          b5          b6 </span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.52440945  0.06927559  0.37165354  7.00000000  5.53307087  2.81653543  5.20708661  2.27322835 </span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          r1          r2          r3 </span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -0.61653543  0.67322835  0.75826772</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot GA history </span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.GA</span>(mt_svr)</span></code></pre></div>
+<p><img src="my_vignette_files/figure-html/unnamed-chunk-3-2.png" /><!-- --></p>
+</div>
+</div>
+<div id="authors" class="section level1">
+<h1>Authors</h1>
+<div id="development-maintenance" class="section level2">
+<h2>Development &amp; Maintenance</h2>
+<p>Anderson A.C. Alves (<a href="mailto:carvalhoalve@wisc.edu" class="email">carvalhoalve@wisc.edu</a>)</p>
+<p>webpage: <a href="http://alvesand.netlify.app/" class="uri">http://alvesand.netlify.app/</a></p>
+</div>
+<div id="contributors" class="section level2">
+<h2>Contributors</h2>
+<p>Guilherme J. M. Rosa (<a href="mailto:grosa@wisc.edu" class="email">grosa@wisc.edu</a>)</p>
+<p>webpage: <a href="https://www.gjmrosa.org/" class="uri">https://www.gjmrosa.org/</a></p>
+</div>
+<div id="qmtsvr.ga-2" class="section level2">
+<h2>qmtsvr.GA</h2>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Karatzoglou A., Smola A., Hornik K., and Zeileis A. (2004). kernlab - An S4 Package for Kernel Methods in R. <em>J. Stat. Soft.</em> 11:1–20. doi: <a href="https://doi.org/10.18637/jss.v011.i09" class="uri">https://doi.org/10.18637/jss.v011.i09</a></p>
+<p>VanRaden P. M. (2008). Efficient Methods to Compute Genomic Predictions. <em>J. Dairy Sci.</em> 91:4414-4423. doi: <a href="https://doi.org/10.3168/jds.2007-0980" class="uri">https://doi.org/10.3168/jds.2007-0980</a></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -9,6 +9,12 @@ output:
 
 ![](software.png){width=20%}  
 
+## R package
+
+* [qmtsvr](): (Quasi) Multi-task Support Vector Regression methods for genome-wide prediction of complex traits. 
+[`Documentation`](my_vignette.html) [`Source Code`](https://github.com/alvesand/qmtsvr)
+
+
 ## R scripts  
 
 * [easymanh](https://github.com/alvesand/easymanh): A simple and flexible function for displaying Manhattan plots using different scores.  
