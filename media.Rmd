@@ -7,6 +7,10 @@ output:
     toc: false
 ---
 ![](video.png){width=20%}  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/V60lpNTEsVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+**#12 - Dr. Anderson Alves: Genetics, machine learning, and technology**    
+My participation in the Poultry Podcast Show    
+
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/U6iGEbTS8FA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  

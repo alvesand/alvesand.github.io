@@ -14,9 +14,9 @@ output:
 
 ## 2022  
 
-**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) Genetic analysis of feed efficiency and novel feeding behavior traits measured in group-housed broilers using electronic feeders. *Journal of Animal Science* (forthcoming)  
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) Genetic analysis of feed efficiency and novel feeding behavior traits measured in group-housed broilers using electronic feeders. *Poultry Science* (forthcoming)  
 
-**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) (Quasi) Multi-task support vector regression with flexible hyperparameter selection via genetic algorithm for whole-genome prediction of complex traits: a case study with carcass traits in broilers. *G3* (forthcoming)  
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Gianola D, Rosa GJM (2022)	(Quasi) Multi-task support vector regression with heuristic hyperparameter optimization for whole-genome prediction of complex traits: a case study with carcass traits in broilers. *G3* (forthcoming)  
 
 **Alves AAC**, Costa RM, Fonseca LS, Carvalheiro R, Ventura RV, Rosa GJM, Albuquerque
 LG (2022) A Random Forest-based genome-wide scan reveals fertility candidate genes and
