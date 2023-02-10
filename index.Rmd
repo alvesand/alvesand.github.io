@@ -8,19 +8,14 @@ output:
 ---
 
 
-![](Picture1.png){width=100%}  
+![](web logo.jpg){width=100%}  
 
 Anderson is an statistical geneticist, currently working as Research Associate at [Dr. Rosa's lab](https://www.gjmrosa.org/) (University of Wisconsin-Madison). His research focuses on developing and applying statistical models and machine learning methods for the analysis of quantitative traits in livestock animals.   
 
-[**MY CV**](https://drive.google.com/file/d/1L--umruVUK-_8RyQvbjPzY2xiVVJ6FlF/view?usp=share_link)
+**You can find my CV [here](https://drive.google.com/file/d/1VMhU_3dazeR3e1MSGOYlpuyqbezl4-Uy/view?usp=share_link).**
 
 **Reach me at:**
 
-[![](in.jpg){width=10%}](https://www.linkedin.com/in/anderson-alves-69aa70212/)[![](logo_github.png){width=10%}](https://github.com/alvesand)[![](rg.png){width=10%}](https://www.researchgate.net/profile/Anderson-Alves-2)  
-
-
-
-
-
+[![](in.jpg){width=10%}](https://www.linkedin.com/in/anderson-alves-69aa70212/)[![](logo_github.png){width=10%}](https://github.com/alvesand)[![](rg.png){width=10%}](https://www.researchgate.net/profile/Anderson-Alves-2)[![](insta.png){width=10%}](https://www.instagram.com/oakalves/)  
 
 

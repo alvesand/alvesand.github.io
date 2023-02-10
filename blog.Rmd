@@ -1,0 +1,16 @@
+---
+title: ""
+output: 
+  html_document:
+    css: style.css
+    theme: cerulean
+    toc: false
+---
+
+![](images/blog.png){width=40%}  
+
+Some random stuff that I would like to take note.  
+
+# 2023
+
+* [`C++ Tutorial`](blog/notes-C.html) 

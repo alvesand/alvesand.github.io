@@ -6,6 +6,14 @@ output:
     theme: cerulean
     toc: false
 ---
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EmooJrG6uow" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+**#03 - Genômica × Zootecnia de precisão: Como o melhoramento genético de aves está avançando?**
+
+A nice chat for the *O Aviario Podcast* show, where we discuss the recent advances in genomics and precision livestock farming applied to poultry production. [*In portuguese*]
+
+
 ![](video.png){width=20%}  
 <iframe width="560" height="315" src="https://www.youtube.com/embed/V60lpNTEsVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
 **#12 - Dr. Anderson Alves: Genetics, machine learning, and technology**    
