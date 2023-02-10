@@ -9,14 +9,20 @@ output:
 
 ![](paper.png){width=20%}      
 
-
 # Peer-reviewed articles  
 
+## 2023 
+
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2023) Genetic analysis of feed efficiency and novel feeding behavior traits measured in group-housed broilers using electronic feeders. *Poultry Science* (*forthcoming*)  
+
+**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Gianola D, Rosa GJM (2023)	(Quasi) Multi-task support vector regression with heuristic hyperparameter optimization for whole-genome prediction of complex traits: a case study with carcass traits in broilers. *G3* (*forthcoming*)  
+
+Freitas LA, Savegnago RP, **Alves** AAC, Costa RLD, Munari DP, Stafuzza NB, Rosa GJM, Paz CCP (2023) Classification Performance of Machine Learning Methods for Identifying Resistance, Resilience, and Susceptibility to Gastrointestinal Nematode Infections in Sheep. *Animals*. 13(3):374. [https://doi.org/10.3390/ani13030374](https://doi.org/10.3390/ani13030374)
+
+Pinto DL, Selli A, Tulpan D, Andrietta LT, Garbossa PLM, Voort GV, Munro Jasper, McMorris M, **Alves AAC**, Carvalheiro R, Poleti MD, Balieiro JCC, Ventura RV (2023) Image feature extraction via Local Binary Patterns for marbling score classification in beef cattle using tree-based algorithms. *Livestock Science*. 267:105152. [doi:10.1016/j.livsci.2022.105152](https://www.sciencedirect.com/science/article/pii/S1871141322003250)
+
+
 ## 2022  
-
-**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Rosa GJM (2022) Genetic analysis of feed efficiency and novel feeding behavior traits measured in group-housed broilers using electronic feeders. *Poultry Science* (forthcoming)  
-
-**Alves AAC**, Fernandes AFA, Lopes FB, Breen V, Hawken R, Gianola D, Rosa GJM (2022)	(Quasi) Multi-task support vector regression with heuristic hyperparameter optimization for whole-genome prediction of complex traits: a case study with carcass traits in broilers. *G3* (forthcoming)  
 
 **Alves AAC**, Costa RM, Fonseca LS, Carvalheiro R, Ventura RV, Rosa GJM, Albuquerque
 LG (2022) A Random Forest-based genome-wide scan reveals fertility candidate genes and
@@ -63,8 +69,3 @@ Lôbo AMBO, Lôbo RNB, Facó O, Souza V, **Alves AAC**, Costa AC, and Albuquerqu
 ## 2016
 
 **Alves AAC**, Lôbo AMBO, Facó O, Silva LP, and Lôbo RNB (2016) Genetic parameters for the rank of the Santa Inês sheep in agricultural fairs using Bayesian procedures. *Italian Journal of Animal Science* 15:604-609. [doi: 10.1080/1828051X.2016.1248866](https://www.tandfonline.com/doi/full/10.1080/1828051X.2016.1248866)
-
-
-
-
-
