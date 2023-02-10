@@ -1,0 +1,165 @@
+---
+title: ""
+output: 
+  html_document:
+    theme: cerulean
+    toc: false
+---
+
+# C++ Basic Tutorial
+
+## 1. Basic Features  
+
+* Compiled Language  
+* Case sensitive  
+* Very close to the hardware (low level language)  
+
+## 1.1 Basic C++ Program structure
+
+```{Rcpp, eval = FALSE}
+
+//This is a comment
+#include <iostream>
+
+int main()
+{
+  std::cout << "Hello World!\n";
+  return 0;
+}
+
+```
+
+* Statements must end with semicolons  
+* // is a commented line 
+* all the main code must be within int main() {}
+
+### Basic Console commands
+
+* cout stands for console out (Prints information to the console)
+* system("cls"): clears the console
+
+
+## 1.2 Variables
+
+**The most common variable types in C++ are:**  
+
+float: for decimal variables  
+char: for declaring a character  
+int: stores an integer number  
+bool: Logical value (true or false)  
+double: stores decimal values (larger than float and uses more memory)  
+
+
+Every variable must be declared in the program: 
+
+```{Rcpp, eval = FALSE}
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  float myfloat;
+  char mychar = 'A';
+  int anyNumber = 4;
+  bool olderThan18 = true;
+  
+  
+  myfloat = 55.44;
+  cout << "the number is " << myfloat;
+  return 0;
+}
+
+```
+
+
+## 1.3 Conditionals
+
+* if ()  
+* else ()   
+* else if ()    
+* Ternary conditional (Short for if else) : (a == b)? cout << "true": cout << "false"
+* Switch operator: switch(variable){case consition: action; break}
+
+**Small Program 1: Body Mass Index Calculator** 
+
+```{Rcpp, eval = FALSE}
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    float weight;
+    float height;
+    float BMI;
+
+    cout << "Type your Weight (Kg): " << endl;
+    cin >> weight;
+    cout << "Type your Height (m): " << endl;
+    cin >> height;
+
+    BMI = weight / (height * height);
+    cout << "Your BMI is: " << BMI << endl;
+
+    if (BMI < 18.5)
+      cout << "You are underweight" << endl;
+    else if (BMI > 18.5 && BMI < 25)
+      cout << "Your BMI is normal" << endl;
+    else
+      cout << "You are overweight" << endl;
+    return 0;
+}
+
+```
+
+**Small Program 2: Building a simple calculator** 
+
+```{Rcpp, eval = FALSE}
+#include <iostream>
+using namespace std;
+int main()
+{
+    float num1;
+    float num2;
+    char operation;
+
+    cout << "Type your operation: " << endl;
+    cin >> num1 >> operation >> num2;
+
+    switch (operation)
+    {
+        case '-': cout << num1 << operation << num2 << "=" << num1 - num2; break;
+        case '+': cout << num1 << operation << num2 << "=" << num1 + num2; break;
+        case '*': cout << num1 << operation << num2 << "=" << num1 * num2; break;
+        case '/': cout << num1 << operation << num2 << "=" << num1 / num2; break;
+        case '%':
+        bool isNum1Int, isNum2Int;
+        isNum1Int = int(num1) == num1;
+        isNum2Int = int(num2) == num2;
+        if (isNum1Int && isNum2Int)
+            cout << num1 << operation << num2 << "=" << (int)num1 % (int)num2;
+        else
+            cout << "Not valid operation" << endl;
+        break;
+    default:cout << "Not valid operation" << endl;
+    }
+    return 0;
+}
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
